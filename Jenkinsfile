@@ -25,14 +25,5 @@ cal'''
       }
     }
 
-    stage('deploy') {
-      steps {
-        timestamps() {
-          echo 'new me'
-        }
-
-      }
-    }
-
   }
 }
