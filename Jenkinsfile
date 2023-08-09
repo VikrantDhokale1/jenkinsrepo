@@ -27,7 +27,10 @@ cal'''
 
     stage('deploy') {
       steps {
-        pwd(tmp: true)
+        timestamps() {
+          echo 'new me'
+        }
+
       }
     }
 
