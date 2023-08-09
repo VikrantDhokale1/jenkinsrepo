@@ -1,9 +1,9 @@
 pipeline{
-
+    agent any
     stages{
         stage("A"){
             steps{
-                echo 'step 1'
+                echo "========executing A========"
             }
             post{
                 always{
@@ -12,15 +12,14 @@ pipeline{
                 success{
                     echo "========A executed successfully========"
                 }
-                
+                failure{
+                    echo "========A execution failed========"
+                }
             }
         }
         stage("B"){
             steps{
-                sh '''pwd
-                   ls
-                   date
-                   cal'''
+                echo "========executing A========"
             }
             post{
                 always{
@@ -28,6 +27,9 @@ pipeline{
                 }
                 success{
                     echo "========A executed successfully========"
+                }
+                failure{
+                    echo "========A execution failed========"
                 }
             }
         }
