@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+    
+    environment{
+        name = 'vikrant'
+    }
+    parameters{
+        string(name:'Person',defaultValue:'Vikrant Dhokale',description:'who are you')
+        booleanParam(name:'isMale',defaultValue: true ,description:"")
+    }
+    stages {
+        stage('RUN COMMAND') {
+            steps {
+                sh 'echo "${BUILD_ID}"'
+                sh 'echo "${name}"'
+                sh 'echo "${Person}"'
+            }
+        }
+        stage('usironment variableer-defined env') {
+        environment{
+        username = 'vikrant'
+        }
+        steps {
+                echo 'deploy on test'
+                sh 'echo "${username}"'
+            }
+        }
+    
+        stage(' continue deploy') {
+            input{
+                message "shoul we continue?"
+                ok "yes we should"
+            }
+            steps {
+                echo12 'deploy on prod'
+            }
+        }
+       
+    }
+    post{
+        always {
+            echo "i will always say hello"
+        }
+        failure {
+            echo "failure"
+        }
+        success {
+            echo "success"
+        }
+    }
+    
+}    
